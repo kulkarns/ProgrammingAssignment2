@@ -1,4 +1,5 @@
 ## makeCacheMatrix: This function creates a special "matrix" object that can cache its inverse
+## Note: It is assumed that the matrix supplied is always invertible
 
 makeCacheMatrix <- function(x = matrix()) {
         m <- NULL
@@ -19,14 +20,13 @@ makeCacheMatrix <- function(x = matrix()) {
 ##              retrieve the inverse from the cache.
 
 cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
         cachem <- x$getinv()
         if(!is.null(cachem)) {
                 message("getting cached data")
                 return(chachem)
         }
         matrix <-x$get()
-        m <- solve(matrix) ##eturns inverse of x
+        m <- solve(matrix) ##compute inverse of matrix since it's not in cache
         x$setinv(m)
         m
 }
