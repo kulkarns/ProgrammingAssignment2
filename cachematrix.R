@@ -8,10 +8,10 @@ makeCacheMatrix <- function(x = matrix()) {
         }
         get <- function() x
         setinv<- function(solve) m <<- solve
-        getmean <- function() m
+        getinv <- function() m
         list(set = set, get = get,
-             setmean = setmean,
-             getmean = getmean)
+             setinv = setinv,
+             getinv = getinv)
 }
 
 ## cacheSolve: This function computes the inverse of the special "matrix" returned by makeCacheMatrix above. 
@@ -25,10 +25,8 @@ cacheSolve <- function(x, ...) {
                 message("getting cached data")
                 return(chachem)
         }
-        cachem
-}
         matrix <-x$get()
         m <- solve(matrix) ##eturns inverse of x
         x$setinv(m)
         m
-        }
+}
