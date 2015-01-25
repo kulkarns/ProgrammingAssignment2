@@ -8,7 +8,7 @@ makeCacheMatrix <- function(x = matrix()) {
                 m <<- NULL
         }
         get <- function() x
-        setinv<- function(solve) m <<- solve
+        setinv<- function(solve) m <<- solve ## m will store the inverse of x
         getinv <- function() m
         list(set = set, get = get,
              setinv = setinv,
@@ -27,6 +27,6 @@ cacheSolve <- function(x, ...) {
         }
         matrix <-x$get()
         m <- solve(matrix) ##compute inverse of matrix since it's not in cache
-        x$setinv(m)
+        x$setinv(m) ## assign the inverse of matrix to the cache
         m
 }
